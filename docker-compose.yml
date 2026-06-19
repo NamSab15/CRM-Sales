@@ -1,0 +1,415 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: crm-postgres
+    env_file:
+      - .env
+    environment:
+      POSTGRES_USER: crm_user
+      POSTGRES_PASSWORD: crm_password
+      POSTGRES_DB: crm_db
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    restart: unless-stopped
+    networks:
+      - crm-internal
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U crm_user -d crm_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: crm-redis
+    env_file:
+      - .env
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    restart: unless-stopped
+    networks:
+      - crm-internal
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.11.1
+    container_name: crm-elasticsearch
+    env_file:
+      - .env
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ports:
+      - "9200:9200"
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
+    restart: unless-stopped
+    networks:
+      - crm-internal
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:9200/_cluster/health || exit 1"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+
+  api-gateway:
+    build:
+      context: .
+      dockerfile: ./services/api-gateway/Dockerfile
+    container_name: crm-api-gateway
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+    networks:
+      - crm-internal
+      - crm-public
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      elasticsearch:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8000/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  lead-service:
+    build:
+      context: .
+      dockerfile: ./services/lead-service/Dockerfile
+    container_name: crm-lead-service
+    env_file:
+      - .env
+    ports:
+      - "8001:3001"
+    restart: unless-stopped
+    networks:
+      - crm-internal
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3001/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  pipeline-service:
+    build:
+      context: .
+      dockerfile: ./services/pipeline-service/Dockerfile
+    container_name: crm-pipeline-service
+    env_file:
+      - .env
+    ports:
+      - "8002:3002"
+    restart: unless-stopped
+    networks:
+      - crm-internal
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3002/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  followup-service:
+    build:
+      context: .
+      dockerfile: ./services/followup-service/Dockerfile
+    container_name: crm-followup-service
+    env_file:
+      - .env
+    ports:
+      - "8003:3003"
+    restart: unless-stopped
+    networks:
+      - crm-internal
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3003/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  campaign-service:
+    build:
+      context: .
+      dockerfile: ./services/campaign-service/Dockerfile
+    container_name: crm-campaign-service
+    env_file:
+      - .env
+    ports:
+      - "8004:3004"
+    restart: unless-stopped
+    networks:
+      - crm-internal
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3004/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  user-service:
+    build:
+      context: .
+      dockerfile: ./services/user-service/Dockerfile
+    container_name: crm-user-service
+    env_file:
+      - .env
+    ports:
+      - "8005:3005"
+    restart: unless-stopped
+    networks:
+      - crm-internal
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3005/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  call-service:
+    build:
+      context: .
+      dockerfile: ./services/call-service/Dockerfile
+    container_name: crm-call-service
+    env_file:
+      - .env
+    ports:
+      - "8006:3006"
+    restart: unless-stopped
+    networks:
+      - crm-internal
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3006/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  notification-service:
+    build:
+      context: .
+      dockerfile: ./services/notification-service/Dockerfile
+    container_name: crm-notification-service
+    env_file:
+      - .env
+    ports:
+      - "8007:3007"
+    restart: unless-stopped
+    networks:
+      - crm-internal
+    depends_on:
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3007/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  analytics-service:
+    build:
+      context: .
+      dockerfile: ./services/analytics-service/Dockerfile
+    container_name: crm-analytics-service
+    env_file:
+      - .env
+    ports:
+      - "8008:3008"
+    restart: unless-stopped
+    networks:
+      - crm-internal
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      elasticsearch:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3008/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  ai-scoring:
+    build:
+      context: ./ai-workers/scoring
+      dockerfile: Dockerfile
+    container_name: crm-ai-scoring
+    env_file:
+      - .env
+    ports:
+      - "9000:9000"
+    volumes:
+      - model-artifacts:/app/models
+    restart: unless-stopped
+    networks:
+      - crm-internal
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:9000/health')"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+  ai-email-gen:
+    build:
+      context: ./ai-workers/email-gen
+      dockerfile: Dockerfile
+    container_name: crm-ai-email-gen
+    env_file:
+      - .env
+    ports:
+      - "9001:9001"
+    volumes:
+      - model-artifacts:/app/models
+    restart: unless-stopped
+    networks:
+      - crm-internal
+    depends_on:
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:9001/health')"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+  ai-assistant:
+    build:
+      context: ./ai-workers/assistant
+      dockerfile: Dockerfile
+    container_name: crm-ai-assistant
+    env_file:
+      - .env
+    ports:
+      - "9002:9002"
+    volumes:
+      - model-artifacts:/app/models
+    restart: unless-stopped
+    networks:
+      - crm-internal
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:9002/health')"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+  web:
+    build:
+      context: .
+      dockerfile: ./apps/web/Dockerfile
+    container_name: crm-web
+    env_file:
+      - .env
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+    networks:
+      - crm-public
+    depends_on:
+      api-gateway:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+  admin:
+    build:
+      context: .
+      dockerfile: ./apps/admin/Dockerfile
+    container_name: crm-admin
+    env_file:
+      - .env
+    ports:
+      - "3002:3000"
+    restart: unless-stopped
+    networks:
+      - crm-public
+    depends_on:
+      api-gateway:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+
+volumes:
+  postgres-data:
+  redis-data:
+  elasticsearch-data:
+  model-artifacts:
+
+networks:
+  crm-internal:
+    driver: bridge
+  crm-public:
+    driver: bridge

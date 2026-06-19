@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+    body { font-family: 'Inter', sans-serif; }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .streaming-dot {
+      animation: pulse-ring 1.25s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+    }
+    @keyframes pulse-ring {
+      0% { transform: scale(.33); opacity: 0; }
+      80%, 100% { opacity: 0; }
+      50% { opacity: 1; }
+    }
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(12px);
+    }
+  </style>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "primary": "#004ac6",
+            "on-error": "#ffffff",
+            "surface-tint": "#0053db",
+            "on-secondary-container": "#00714d",
+            "tertiary-container": "#996100",
+            "surface-container-highest": "#d3e4fe",
+            "outline-variant": "#c3c6d7",
+            "tertiary-fixed-dim": "#ffb95f",
+            "surface-bright": "#f8f9ff",
+            "surface-variant": "#d3e4fe",
+            "surface-container-low": "#eff4ff",
+            "inverse-on-surface": "#eaf1ff",
+            "on-error-container": "#93000a",
+            "on-surface": "#0b1c30",
+            "error": "#ba1a1a",
+            "on-primary-fixed-variant": "#003ea8",
+            "error-container": "#ffdad6",
+            "on-secondary-fixed": "#002113",
+            "on-secondary": "#ffffff",
+            "on-surface-variant": "#434655",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-high": "#dce9ff",
+            "on-tertiary-fixed": "#2a1700",
+            "on-tertiary-container": "#ffeedd",
+            "background": "#f8f9ff",
+            "on-secondary-fixed-variant": "#005236",
+            "on-tertiary": "#ffffff",
+            "on-primary": "#ffffff",
+            "on-background": "#0b1c30",
+            "on-primary-container": "#eeefff",
+            "inverse-primary": "#b4c5ff",
+            "surface": "#f8f9ff",
+            "tertiary": "#784b00",
+            "secondary": "#006c49",
+            "secondary-fixed-dim": "#4edea3",
+            "primary-container": "#2563eb",
+            "surface-container": "#e5eeff",
+            "secondary-container": "#6cf8bb",
+            "on-tertiary-fixed-variant": "#653e00",
+            "secondary-fixed": "#6ffbbe",
+            "primary-fixed": "#dbe1ff",
+            "outline": "#737686",
+            "on-primary-fixed": "#00174b",
+            "inverse-surface": "#213145",
+            "tertiary-fixed": "#ffddb8",
+            "primary-fixed-dim": "#b4c5ff",
+            "surface-dim": "#cbdbf5"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "container-margin": "24px",
+            "base": "4px",
+            "md": "16px",
+            "xl": "32px",
+            "lg": "24px",
+            "gutter": "16px",
+            "xs": "4px",
+            "sm": "8px"
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-background text-on-surface">
+<!-- Main CRM Shell Layout -->
+<div class="flex h-screen overflow-hidden">
+<!-- SideNav Anchor Component -->
+<aside class="fixed left-0 top-0 h-full w-[240px] bg-on-surface flex flex-col py-md z-10">
+<div class="px-md mb-xl">
+<h1 class="font-headline-sm text-headline-sm font-bold text-surface-container-lowest">SalesAI</h1>
+<p class="text-[10px] text-surface-variant/70 uppercase tracking-widest mt-1">Enterprise CRM</p>
+</div>
+<nav class="flex-1 flex flex-col gap-1">
+<div class="bg-primary-container text-on-primary-container rounded-lg mx-2 my-1 flex items-center px-3 py-2 gap-3 transition-transform scale-95 active:scale-90">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</div>
+<div class="text-surface-variant hover:text-surface-container-lowest mx-2 my-1 flex items-center px-3 py-2 gap-3 transition-colors duration-200 hover:bg-on-primary-fixed-variant">
+<span class="material-symbols-outlined">business_center</span>
+<span class="font-body-md text-body-md">Accounts</span>
+</div>
+<div class="text-surface-variant hover:text-surface-container-lowest mx-2 my-1 flex items-center px-3 py-2 gap-3 transition-colors duration-200 hover:bg-on-primary-fixed-variant">
+<span class="material-symbols-outlined">person_search</span>
+<span class="font-body-md text-body-md">Leads</span>
+</div>
+<div class="text-surface-variant hover:text-surface-container-lowest mx-2 my-1 flex items-center px-3 py-2 gap-3 transition-colors duration-200 hover:bg-on-primary-fixed-variant">
+<span class="material-symbols-outlined">monetization_on</span>
+<span class="font-body-md text-body-md">Opportunities</span>
+</div>
+<div class="text-surface-variant hover:text-surface-container-lowest mx-2 my-1 flex items-center px-3 py-2 gap-3 transition-colors duration-200 hover:bg-on-primary-fixed-variant">
+<span class="material-symbols-outlined">pending_actions</span>
+<span class="font-body-md text-body-md">Activities</span>
+</div>
+<div class="text-surface-variant hover:text-surface-container-lowest mx-2 my-1 flex items-center px-3 py-2 gap-3 transition-colors duration-200 hover:bg-on-primary-fixed-variant">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</div>
+</nav>
+<div class="mt-auto px-md pt-lg border-t border-surface-variant/10">
+<button class="w-full bg-primary text-white font-label-md text-label-md py-sm rounded-lg flex items-center justify-center gap-2 mb-md">
+<span class="material-symbols-outlined text-[18px]">add</span>
+          New Record
+        </button>
+<div class="flex flex-col gap-2 opacity-60">
+<div class="flex items-center gap-3 px-2 py-1 hover:text-white cursor-pointer transition-colors text-surface-variant">
+<span class="material-symbols-outlined text-[20px]">support_agent</span>
+<span class="font-body-md text-body-md">Support</span>
+</div>
+<div class="flex items-center gap-3 px-2 py-1 hover:text-white cursor-pointer transition-colors text-surface-variant">
+<span class="material-symbols-outlined text-[20px]">help</span>
+<span class="font-body-md text-body-md">Help</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Content Canvas -->
+<main class="ml-[240px] flex-1 flex flex-col relative">
+<!-- TopNavBar Anchor -->
+<header class="h-16 bg-surface-container-lowest border-b border-outline-variant flex justify-between items-center px-lg z-0">
+<div class="flex items-center gap-lg flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-xl focus:ring-2 focus:ring-primary/20 text-body-md" placeholder="Search leads, tasks, or insights..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="flex items-center gap-sm pr-md border-r border-outline-variant">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors opacity-80 active:opacity-100">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors opacity-80 active:opacity-100">
+<span class="material-symbols-outlined">chat_bubble</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors opacity-80 active:opacity-100">
+<span class="material-symbols-outlined">history</span>
+</button>
+</div>
+<div class="flex items-center gap-sm pl-sm">
+<div class="text-right">
+<p class="font-label-md text-label-md text-on-surface">Alex Rivera</p>
+<p class="text-[10px] text-outline uppercase font-bold">Sr. Account Executive</p>
+</div>
+<img class="w-10 h-10 rounded-full border-2 border-primary-container object-cover" data-alt="A professional headshot of a Hispanic male corporate professional in a modern office, soft bokeh background with glass partitions, wearing a sharp charcoal blazer and white shirt, high-end commercial photography style with clean lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYE0nIsxwUhnqgVWS0jeaq1axoOUszUqYV1WXzvnCfj_t-RVenInDTzAVEewaGO69ej8Kjx4SouzHFDFbjiFw6PZvhX0t1U6774Kky38iarASEXfvJ9kNCBmPzBFQX_xgwM1JL-BVWPM3C5YNq_8QGxdl0Z5Z0BsK8rhZzjdEKugcJ_TJhQC33YpUUMgF_o_iPz_U9LQnDXCmI10Yk2dQapbv-EkXGH0nOSZaHJxRKyJ6i7iBfy-QQiEK2Bi8i6Xr7vkQ4Xv3J1g"/>
+</div>
+</div>
+</header>
+<!-- Lead Detail Screen Content (Background) -->
+<div class="p-lg overflow-y-auto flex-1 bg-surface-bright">
+<div class="max-w-5xl mx-auto space-y-lg">
+<!-- Lead Header -->
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-lg">
+<div class="w-20 h-20 bg-primary-container rounded-2xl flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined text-[40px]">apartment</span>
+</div>
+<div>
+<h2 class="text-display-lg font-display-lg text-on-surface">Jordan McLellan</h2>
+<div class="flex items-center gap-sm mt-1">
+<span class="bg-secondary/10 text-secondary px-2 py-0.5 rounded-full text-label-sm font-label-sm uppercase tracking-wider">Hot Lead</span>
+<span class="text-outline text-body-sm">Director of Operations at Global Logistics Corp</span>
+</div>
+</div>
+</div>
+<div class="flex gap-sm">
+<button class="px-lg py-2 border border-outline text-on-surface-variant rounded-lg font-label-md hover:bg-surface-container transition-colors">Edit</button>
+<button class="px-lg py-2 bg-primary text-white rounded-lg font-label-md shadow-lg shadow-primary/20">Convert</button>
+</div>
+</div>
+<!-- Bento Layout Grid for Lead Details -->
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Summary Card -->
+<div class="col-span-8 bg-white rounded-xl border border-outline-variant p-md">
+<div class="flex justify-between items-center mb-md">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Deal Intelligence</h3>
+<span class="material-symbols-outlined text-outline">more_horiz</span>
+</div>
+<div class="grid grid-cols-3 gap-md">
+<div class="p-md bg-surface-container-low rounded-lg">
+<p class="text-label-sm text-outline uppercase">Potential Value</p>
+<p class="text-headline-md font-headline-md text-primary">$124,500</p>
+</div>
+<div class="p-md bg-surface-container-low rounded-lg">
+<p class="text-label-sm text-outline uppercase">Win Probability</p>
+<p class="text-headline-md font-headline-md text-secondary">68%</p>
+</div>
+<div class="p-md bg-surface-container-low rounded-lg">
+<p class="text-label-sm text-outline uppercase">Next Milestone</p>
+<p class="text-body-md font-medium text-on-surface mt-1">Contract Review</p>
+</div>
+</div>
+<div class="mt-lg">
+<p class="text-body-md text-on-surface-variant leading-relaxed">
+                  Jordan has shown high interest in the automated dispatch module. Last touchpoint was an 18-minute call discussing API integrations with their legacy SAP system. Recommended action: Follow up with technical documentation.
+                </p>
+</div>
+</div>
+<!-- Activity Feed -->
+<div class="col-span-4 bg-white rounded-xl border border-outline-variant p-md flex flex-col">
+<h3 class="font-headline-sm text-headline-sm text-on-surface mb-md">Timeline</h3>
+<div class="flex-1 space-y-md">
+<div class="flex gap-sm">
+<div class="flex flex-col items-center">
+<div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">call</span>
+</div>
+<div class="w-0.5 h-full bg-outline-variant mt-sm"></div>
+</div>
+<div>
+<p class="text-body-sm font-bold">Outbound Call</p>
+<p class="text-body-sm text-outline">2 hours ago</p>
+</div>
+</div>
+<div class="flex gap-sm">
+<div class="flex flex-col items-center">
+<div class="w-8 h-8 rounded-full bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[18px]">mail</span>
+</div>
+<div class="w-0.5 h-full bg-outline-variant mt-sm"></div>
+</div>
+<div>
+<p class="text-body-sm font-bold">Email Opened (3x)</p>
+<p class="text-body-sm text-outline">Yesterday, 4:45 PM</p>
+</div>
+</div>
+<div class="flex gap-sm">
+<div class="flex flex-col items-center">
+<div class="w-8 h-8 rounded-full bg-tertiary/10 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[18px]">event</span>
+</div>
+</div>
+<div>
+<p class="text-body-sm font-bold">On-site Meeting</p>
+<p class="text-body-sm text-outline">Oct 12, 2023</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- AI ASSISTANT DRAWER OVERLAY -->
+<div class="fixed right-0 top-0 h-full w-[480px] bg-surface-container-lowest shadow-2xl z-50 border-l border-outline-variant transform transition-transform duration-500 ease-out translate-x-0" id="ai-drawer">
+<!-- Drawer Header -->
+<div class="h-16 flex items-center justify-between px-lg border-b border-outline-variant bg-white">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-[20px]">psychology</span>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm leading-none">AI Sales Assistant</h4>
+<p class="text-[10px] text-secondary font-bold uppercase mt-0.5 flex items-center gap-1">
+<span class="relative flex h-2 w-2">
+<span class="streaming-dot absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span>
+</span>
+                Active Insights
+              </p>
+</div>
+</div>
+<button class="p-2 hover:bg-surface-container rounded-full transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Lead Context Sub-header -->
+<div class="px-lg py-md bg-surface-container-low/50 border-b border-outline-variant">
+<div class="flex items-center justify-between">
+<p class="text-label-sm text-outline uppercase font-bold tracking-tighter">Lead Context</p>
+<span class="text-label-sm text-primary font-bold">Jordan McLellan • hot_lead</span>
+</div>
+<div class="mt-2 flex gap-xs">
+<div class="flex-1 h-1 bg-primary rounded-full"></div>
+<div class="flex-1 h-1 bg-primary rounded-full"></div>
+<div class="flex-1 h-1 bg-outline-variant rounded-full"></div>
+</div>
+</div>
+<!-- Scrollable Chat Thread -->
+<div class="flex-1 overflow-y-auto px-lg py-lg flex flex-col gap-lg h-[calc(100vh-280px)]" id="chat-thread">
+<!-- System/AI Message -->
+<div class="flex gap-md group">
+<div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0 mt-1">
+<span class="material-symbols-outlined text-[18px]">smart_toy</span>
+</div>
+<div class="space-y-sm max-w-[85%]">
+<div class="bg-surface-container-low text-on-surface p-md rounded-xl rounded-tl-none border border-outline-variant/30 text-body-md leading-relaxed shadow-sm">
+                Based on Jordan's last call, they are 15% more likely to close if we provide the <strong>Custom Integration Whitepaper</strong> within the next 24 hours. Would you like me to draft a follow-up?
+              </div>
+<p class="text-[10px] text-outline pl-1">AI Insight • 09:41 AM</p>
+</div>
+</div>
+<!-- User Message -->
+<div class="flex gap-md flex-row-reverse">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface-variant shrink-0 mt-1">
+<span class="material-symbols-outlined text-[18px]">person</span>
+</div>
+<div class="space-y-sm max-w-[85%] text-right">
+<div class="bg-primary text-white p-md rounded-xl rounded-tr-none text-body-md leading-relaxed shadow-md shadow-primary/10">
+                Yes, please. Focus on the SAP integration and mention our recent case study with Northern Rail.
+              </div>
+<p class="text-[10px] text-outline pr-1">You • 09:43 AM</p>
+</div>
+</div>
+<!-- AI Message (Streaming Response State) -->
+<div class="flex gap-md group">
+<div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary shrink-0 mt-1">
+<span class="material-symbols-outlined text-[18px]">smart_toy</span>
+</div>
+<div class="space-y-sm max-w-[85%]">
+<div class="bg-surface-container-low text-on-surface p-md rounded-xl rounded-tl-none border border-outline-variant/30 text-body-md leading-relaxed">
+<p class="mb-sm">Certainly. I've drafted an email highlighting our SAP certified connector. Here's a summary of the core value proposition I included:</p>
+<div class="border-l-4 border-primary/20 pl-md py-sm bg-white/50 rounded-r-lg italic text-on-surface-variant text-body-sm">
+                  "Our integration reduced Northern Rail's data latency by 44%, resulting in immediate operational savings..."
+                </div>
+<!-- SSE Indicator -->
+<div class="mt-md flex items-center gap-2 text-primary text-label-sm font-bold italic opacity-80">
+<span class="flex gap-0.5">
+<span class="w-1 h-1 bg-primary rounded-full animate-bounce"></span>
+<span class="w-1 h-1 bg-primary rounded-full animate-bounce [animation-delay:0.2s]"></span>
+<span class="w-1 h-1 bg-primary rounded-full animate-bounce [animation-delay:0.4s]"></span>
+</span>
+                  Refining draft based on Northern Rail metrics...
+                </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Chat Controls & CTAs -->
+<div class="p-lg bg-white border-t border-outline-variant absolute bottom-0 left-0 w-full space-y-md">
+<!-- Suggestion Chips -->
+<div class="flex gap-sm overflow-x-auto pb-1 no-scrollbar">
+<button class="bg-surface-container-low border border-outline-variant text-on-surface-variant px-md py-1.5 rounded-full text-label-md whitespace-nowrap hover:bg-surface-container transition-colors">Analyze competitor sentiment</button>
+<button class="bg-surface-container-low border border-outline-variant text-on-surface-variant px-md py-1.5 rounded-full text-label-md whitespace-nowrap hover:bg-surface-container transition-colors">Check availability</button>
+</div>
+<div class="flex gap-sm">
+<button class="flex-1 bg-primary text-white py-3 rounded-xl font-label-md flex items-center justify-center gap-2 shadow-lg shadow-primary/20 hover:bg-surface-tint transition-all active:scale-95">
+<span class="material-symbols-outlined text-[20px]">drafts</span>
+              Generate Email
+            </button>
+<button class="flex-1 bg-white border border-outline-variant text-on-surface py-3 rounded-xl font-label-md flex items-center justify-center gap-2 hover:bg-surface-container-low transition-all active:scale-95">
+<span class="material-symbols-outlined text-[20px]">alarm</span>
+              Set Reminder
+            </button>
+</div>
+<!-- Input Area -->
+<div class="relative">
+<textarea class="w-full bg-surface-container-low border-none rounded-xl py-3 pl-4 pr-12 text-body-md focus:ring-2 focus:ring-primary/20 resize-none" placeholder="Ask SalesAI anything about this lead..." rows="1"></textarea>
+<button class="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-primary text-white rounded-lg flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-[18px]">send</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+<script>
+    // Simple UI interaction logic
+    const chatContainer = document.getElementById('chat-thread');
+    // Ensure chat starts scrolled to bottom
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+
+    // Optional: Auto-expanding textarea
+    const textarea = document.querySelector('textarea');
+    textarea.addEventListener('input', function() {
+      this.style.height = 'auto';
+      this.style.height = (this.scrollHeight) + 'px';
+    });
+  </script>
+</body></html>

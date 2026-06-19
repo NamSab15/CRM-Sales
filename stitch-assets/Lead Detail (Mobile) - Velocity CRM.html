@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Lead Detail - SalesAI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#004ac6",
+                        "on-error": "#ffffff",
+                        "surface-tint": "#0053db",
+                        "on-secondary-container": "#00714d",
+                        "tertiary-container": "#996100",
+                        "surface-container-highest": "#d3e4fe",
+                        "outline-variant": "#c3c6d7",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "surface-bright": "#f8f9ff",
+                        "surface-variant": "#d3e4fe",
+                        "surface-container-low": "#eff4ff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-error-container": "#93000a",
+                        "on-surface": "#0b1c30",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed": "#002113",
+                        "on-secondary": "#ffffff",
+                        "on-surface-variant": "#434655",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#dce9ff",
+                        "on-tertiary-fixed": "#2a1700",
+                        "on-tertiary-container": "#ffeedd",
+                        "background": "#f8f9ff",
+                        "on-secondary-fixed-variant": "#005236",
+                        "on-tertiary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "on-background": "#0b1c30",
+                        "on-primary-container": "#eeefff",
+                        "inverse-primary": "#b4c5ff",
+                        "surface": "#f8f9ff",
+                        "tertiary": "#784b00",
+                        "secondary": "#006c49",
+                        "secondary-fixed-dim": "#4edea3",
+                        "primary-container": "#2563eb",
+                        "surface-container": "#e5eeff",
+                        "secondary-container": "#6cf8bb",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "secondary-fixed": "#6ffbbe",
+                        "primary-fixed": "#dbe1ff",
+                        "outline": "#737686",
+                        "on-primary-fixed": "#00174b",
+                        "inverse-surface": "#213145",
+                        "tertiary-fixed": "#ffddb8",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "surface-dim": "#cbdbf5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-margin": "24px",
+                        "base": "4px",
+                        "md": "16px",
+                        "xl": "32px",
+                        "lg": "24px",
+                        "gutter": "16px",
+                        "xs": "4px",
+                        "sm": "8px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "display-lg-mobile": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "display-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "500"}],
+                        "display-lg-mobile": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "display-lg": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; vertical-align: middle; }
+        .transition-all-custom { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden">
+<!-- Top Navigation Bar (Suppressed on Mobile for Focused Detail View) -->
+<header class="fixed top-0 left-0 right-0 h-16 bg-surface-container-lowest flex items-center px-md z-50 border-b border-outline-variant">
+<button class="p-sm mr-sm" onclick="history.back()">
+<span class="material-symbols-outlined text-on-surface">arrow_back</span>
+</button>
+<div class="flex flex-col">
+<h1 class="font-headline-sm text-headline-sm text-on-surface leading-tight">Sarah Jenkins</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Global Tech Solutions • Director of IT</p>
+</div>
+<div class="ml-auto flex gap-sm">
+<button class="w-10 h-10 rounded-full flex items-center justify-center bg-primary-container text-on-primary-container shadow-sm active:scale-90 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">call</span>
+</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center bg-surface-container-high text-on-surface shadow-sm active:scale-90 transition-transform">
+<span class="material-symbols-outlined">mail</span>
+</button>
+</div>
+</header>
+<main class="pt-16 pb-20 min-h-screen">
+<!-- Lead Header & Contact Information -->
+<section class="bg-surface-container-lowest p-md space-y-md">
+<div class="flex items-center gap-md">
+<div class="w-16 h-16 rounded-xl bg-surface-container-high overflow-hidden relative">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a middle-aged woman with a friendly expression, set against a blurred corporate office background. The lighting is soft and natural, emphasizing a high-trust professional atmosphere. The color palette is clean with subtle blues and whites, consistent with a modern enterprise CRM aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDV8MNPSIF38ybDvvSP470ltZ0WFSsdNi5vx1iRltQ7XCwnHt9ZQiBQutdOXPKOPL7Ut5BP5jQY08_KBSA2NbczO2D7NX3INjkyJKN3hopDasUzzcngJBeT9Gi-vrONrffsLY8KTM905e9N_7PnxkyIlFHJdwqJypREB-3T7LhVDLh5gaNvZ9T5wuN5kZ-So_kzH8sDlov4RB5ALfZkCzc1BUo8HqnYmvH2Ud-aD9fRes8k9xKx2kIvKeRgy8ao9jNSZMReEz3GWg"/>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-sm mb-1">
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-fixed-variant font-label-md text-label-md">Qualified Lead</span>
+<span class="text-tertiary font-label-md text-label-md flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">bolt</span> High Intent
+                        </span>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-xs text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[16px]">location_on</span>
+                            San Francisco, CA
+                        </div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-3 gap-sm">
+<div class="bg-surface-container-low p-sm rounded-lg text-center">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase">Deal Value</p>
+<p class="font-headline-sm text-headline-sm text-primary">$45.5k</p>
+</div>
+<div class="bg-surface-container-low p-sm rounded-lg text-center">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase">Probability</p>
+<p class="font-headline-sm text-headline-sm text-secondary">85%</p>
+</div>
+<div class="bg-surface-container-low p-sm rounded-lg text-center">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase">Age</p>
+<p class="font-headline-sm text-headline-sm text-on-surface">12d</p>
+</div>
+</div>
+</section>
+<!-- Tabbed Navigation -->
+<nav class="bg-surface-container-lowest border-b border-outline-variant sticky top-16 z-40">
+<div class="flex px-md overflow-x-auto no-scrollbar">
+<button class="py-md px-lg font-label-md text-label-md border-b-2 border-primary text-primary whitespace-nowrap transition-all-custom" id="tab-overview" onclick="switchTab('overview')">
+                    Overview
+                </button>
+<button class="py-md px-lg font-label-md text-label-md border-b-2 border-transparent text-on-surface-variant whitespace-nowrap flex items-center gap-2 transition-all-custom" id="tab-ai" onclick="switchTab('ai')">
+<span class="material-symbols-outlined text-[18px]">auto_awesome</span>
+                    AI Assistant
+                </button>
+<button class="py-md px-lg font-label-md text-label-md border-b-2 border-transparent text-on-surface-variant whitespace-nowrap transition-all-custom" id="tab-history" onclick="switchTab('history')">
+                    History
+                </button>
+<button class="py-md px-lg font-label-md text-label-md border-b-2 border-transparent text-on-surface-variant whitespace-nowrap transition-all-custom" id="tab-notes" onclick="switchTab('notes')">
+                    Notes
+                </button>
+</div>
+</nav>
+<!-- Tab Contents -->
+<div class="tab-content p-md space-y-md" id="content-overview">
+<!-- Summary Card -->
+<div class="bg-surface-container-lowest p-md rounded-xl border border-outline-variant shadow-sm">
+<div class="flex justify-between items-center mb-md">
+<h3 class="font-headline-sm text-headline-sm">Lead Summary</h3>
+<button class="text-primary font-label-md text-label-md">Edit</button>
+</div>
+<div class="space-y-md">
+<div class="flex justify-between border-b border-outline-variant pb-base">
+<span class="text-on-surface-variant font-body-md text-body-md">Source</span>
+<span class="text-on-surface font-body-md text-body-md">LinkedIn Campaign</span>
+</div>
+<div class="flex justify-between border-b border-outline-variant pb-base">
+<span class="text-on-surface-variant font-body-md text-body-md">Owner</span>
+<span class="text-on-surface font-body-md text-body-md">Alex Rivera</span>
+</div>
+<div class="flex justify-between border-b border-outline-variant pb-base">
+<span class="text-on-surface-variant font-body-md text-body-md">Last Contact</span>
+<span class="text-on-surface font-body-md text-body-md">2 hours ago</span>
+</div>
+</div>
+</div>
+<!-- Activity Timeline -->
+<div class="bg-surface-container-lowest p-md rounded-xl border border-outline-variant shadow-sm">
+<h3 class="font-headline-sm text-headline-sm mb-md">Recent Activity</h3>
+<div class="relative pl-8 space-y-lg before:content-[''] before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-[2px] before:bg-outline-variant">
+<div class="relative">
+<div class="absolute -left-8 w-6 h-6 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center z-10">
+<span class="material-symbols-outlined text-[14px]">call</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Outbound Call - Completed</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">2 hours ago • Duration: 12m 4s</p>
+</div>
+</div>
+<div class="relative">
+<div class="absolute -left-8 w-6 h-6 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center z-10">
+<span class="material-symbols-outlined text-[14px]">mail</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Email Received - Opening</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Yesterday, 4:15 PM</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="tab-content hidden p-md flex flex-col h-full min-h-[530px]" id="content-ai">
+<!-- Compact Insight Card -->
+<div class="bg-surface-container-highest p-md rounded-xl border border-primary-container mb-md relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-2 opacity-20">
+<span class="material-symbols-outlined text-[48px] text-primary">auto_awesome</span>
+</div>
+<div class="relative z-10">
+<div class="flex items-center gap-2 mb-sm">
+<span class="material-symbols-outlined text-primary text-[20px]" style="font-variation-settings: 'FILL' 1;">insights</span>
+<h4 class="font-label-md text-label-md text-primary uppercase tracking-wider">AI Strategy Insight</h4>
+</div>
+<p class="font-body-md text-body-md text-on-surface mb-md leading-relaxed">
+                        Sarah recently attended the "Future of Enterprise AI" webinar. She is specifically looking for <strong>scalability</strong> and <strong>on-premise deployment</strong> options.
+                    </p>
+<div class="flex flex-wrap gap-sm">
+<span class="px-2 py-1 bg-surface-container-lowest rounded text-body-sm text-primary border border-primary/20 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> Mention Scalability
+                        </span>
+<span class="px-2 py-1 bg-surface-container-lowest rounded text-body-sm text-primary border border-primary/20 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> Quote On-Prem SKU
+                        </span>
+</div>
+</div>
+</div>
+<!-- Chat/Question Feed -->
+<div class="flex-1 space-y-md mb-xl">
+<div class="flex gap-sm items-start">
+<div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-on-primary text-[18px]">smart_toy</span>
+</div>
+<div class="bg-surface-container-low p-md rounded-xl rounded-tl-none max-w-[85%] border border-outline-variant">
+<p class="font-body-md text-body-md">Hello Alex! Based on Sarah's profile, I suggest sending her the "Enterprise Security Whitepaper" today. Would you like me to draft that email for you?</p>
+</div>
+</div>
+<div class="flex gap-sm items-start justify-end">
+<div class="bg-primary-container p-md rounded-xl rounded-tr-none max-w-[85%]">
+<p class="font-body-md text-body-md text-on-primary-container">Yes, draft the email focusing on data residency and SOC-2 compliance.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- AI Chat Input (Only visible/elevated when AI tab is active) -->
+<div class="fixed bottom-0 left-0 right-0 bg-surface-container-lowest border-t border-outline-variant p-md transform transition-transform duration-300 translate-y-full z-50" id="ai-chat-input">
+<div class="flex items-center gap-sm bg-surface-container-low rounded-full px-md py-sm border border-outline-variant">
+<span class="material-symbols-outlined text-on-surface-variant">auto_awesome</span>
+<input class="flex-1 bg-transparent border-none focus:ring-0 font-body-md text-body-md p-0" placeholder="Ask SalesAI about Sarah..." type="text"/>
+<button class="bg-primary text-on-primary rounded-full w-8 h-8 flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">arrow_upward</span>
+</button>
+</div>
+</div>
+<!-- Actions Footer (Standard) -->
+<footer class="fixed bottom-0 left-0 right-0 bg-surface-container-lowest border-t border-outline-variant flex justify-around items-center h-16 px-md z-40 transition-transform duration-300" id="standard-footer">
+<button class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">schedule</span>
+<span class="font-label-sm text-label-sm">Follow-up</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">task</span>
+<span class="font-label-sm text-label-sm">Tasks</span>
+</button>
+<button class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined">more_horiz</span>
+<span class="font-label-sm text-label-sm">More</span>
+</button>
+</footer>
+<script>
+        function switchTab(tabId) {
+            // Hide all contents
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            // Show target content
+            document.getElementById('content-' + tabId).classList.remove('hidden');
+
+            // Reset tab button styles
+            document.querySelectorAll('nav button').forEach(btn => {
+                btn.classList.remove('border-primary', 'text-primary');
+                btn.classList.add('border-transparent', 'text-on-surface-variant');
+            });
+
+            // Update active tab button
+            const activeBtn = document.getElementById('tab-' + tabId);
+            activeBtn.classList.remove('border-transparent', 'text-on-surface-variant');
+            activeBtn.classList.add('border-primary', 'text-primary');
+
+            // Toggle Bottom Bars
+            const standardFooter = document.getElementById('standard-footer');
+            const aiChatInput = document.getElementById('ai-chat-input');
+
+            if (tabId === 'ai') {
+                standardFooter.classList.add('translate-y-full');
+                aiChatInput.classList.remove('translate-y-full');
+            } else {
+                standardFooter.classList.remove('translate-y-full');
+                aiChatInput.classList.add('translate-y-full');
+            }
+        }
+
+        // Initialize state
+        window.onload = () => {
+            switchTab('overview');
+        }
+    </script>
+</body></html>

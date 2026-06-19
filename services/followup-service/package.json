@@ -1,0 +1,31 @@
+{
+  "name": "@crm/followup-service",
+  "version": "1.0.0",
+  "private": true,
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "prisma generate --schema=../lead-service/prisma/schema.prisma && tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "lint": "echo \"No lint script for followup-service yet\""
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.1",
+    "zod": "^3.22.4",
+    "node-cron": "^3.0.3",
+    "ioredis": "^5.3.2",
+    "@prisma/client": "^5.10.0",
+    "@crm/shared-types": "*"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/cors": "^2.8.17",
+    "@types/node": "^20.11.16",
+    "@types/node-cron": "^3.0.11",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.3.3",
+    "prisma": "^5.10.0"
+  }
+}

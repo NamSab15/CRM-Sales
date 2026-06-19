@@ -1,0 +1,11 @@
+{
+  "name": "@crm/assistant-worker",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "echo \"Python build complete\"",
+    "dev": "uvicorn main:app --reload --port 9002",
+    "start": "uvicorn main:app --port 9002",
+    "lint": "echo \"No lint script for python worker yet\""
+  }
+}

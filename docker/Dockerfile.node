@@ -1,0 +1,49 @@
+# Stage 1: Build stage
+FROM node:18-alpine AS builder
+WORKDIR /usr/src/app
+
+COPY package.json turbo.json package-lock.json ./
+COPY packages/shared-types ./packages/shared-types
+COPY packages/ui ./packages/ui
+
+# Inject build argument for specific service path
+ARG SERVICE_PATH
+COPY ${SERVICE_PATH} ./${SERVICE_PATH}
+
+# Copy the shared prisma schema for generating the client
+COPY services/lead-service/prisma/schema.prisma ./services/lead-service/prisma/schema.prisma
+
+RUN npm ci
+
+# Generate Prisma Client and compile TypeScript
+ARG SERVICE_NAME
+RUN npm run build --filter=${SERVICE_NAME}...
+
+# Stage 2: Runner stage
+FROM node:18-alpine AS runner
+WORKDIR /usr/src/app
+ENV NODE_ENV=production
+
+# Security: Create non-root group and user
+RUN addgroup -g 1001 -S crmgroup && adduser -u 1001 -S crmuser -G crmgroup
+
+ARG SERVICE_PATH
+COPY --from=builder /usr/src/app/node_modules ./node_modules
+COPY --from=builder /usr/src/app/${SERVICE_PATH}/dist ./${SERVICE_PATH}/dist
+COPY --from=builder /usr/src/app/${SERVICE_PATH}/package.json ./${SERVICE_PATH}/package.json
+
+# Copy schema if Prisma client needs to resolve schema at runtime (e.g. for migrations or client generation validation)
+COPY --from=builder /usr/src/app/services/lead-service/prisma/schema.prisma ./services/lead-service/prisma/schema.prisma
+
+# Set correct folder ownership
+RUN chown -R crmuser:crmgroup /usr/src/app
+
+USER crmuser
+
+ARG PORT
+EXPOSE ${PORT}
+ENV PORT=${PORT}
+
+# Run the transpiled main entry point
+ENV ENTRY_PATH="./${SERVICE_PATH}/dist/index.js"
+CMD node ${ENTRY_PATH}

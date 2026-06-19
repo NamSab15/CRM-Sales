@@ -1,0 +1,40 @@
+# Stage 1: Build stage
+FROM node:18-alpine AS builder
+WORKDIR /usr/src/app
+
+COPY package.json turbo.json package-lock.json ./
+COPY packages/shared-types ./packages/shared-types
+COPY packages/ui ./packages/ui
+
+# Inject build argument for specific app path
+ARG APP_PATH
+COPY ${APP_PATH} ./${APP_PATH}
+
+RUN npm ci
+
+# Build the NextJS app
+ARG APP_NAME
+RUN npm run build --filter=${APP_NAME}...
+
+# Stage 2: Runner stage
+FROM node:18-alpine AS runner
+WORKDIR /usr/src/app
+ENV NODE_ENV=production
+
+# Security: Create non-root group and user
+RUN addgroup -g 1001 -S nodejs && adduser -u 1001 -S nextjs -G nodejs
+
+ARG APP_PATH
+# Copy standalone server and files generated in standalone mode
+COPY --from=builder /usr/src/app/${APP_PATH}/.next/standalone ./
+COPY --from=builder /usr/src/app/${APP_PATH}/.next/static ./${APP_PATH}/.next/static
+COPY --from=builder /usr/src/app/${APP_PATH}/public ./${APP_PATH}/public
+
+USER nextjs
+
+ARG PORT=3000
+EXPOSE ${PORT}
+ENV PORT=${PORT}
+
+# Standalone runner starts server.js from root directory
+CMD ["node", "server.js"]

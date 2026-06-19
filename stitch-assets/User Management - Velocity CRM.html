@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>User Management | SalesAI CRM</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#004ac6",
+                        "on-error": "#ffffff",
+                        "surface-tint": "#0053db",
+                        "on-secondary-container": "#00714d",
+                        "tertiary-container": "#996100",
+                        "surface-container-highest": "#d3e4fe",
+                        "outline-variant": "#c3c6d7",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "surface-bright": "#f8f9ff",
+                        "surface-variant": "#d3e4fe",
+                        "surface-container-low": "#eff4ff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-error-container": "#93000a",
+                        "on-surface": "#0b1c30",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed": "#002113",
+                        "on-secondary": "#ffffff",
+                        "on-surface-variant": "#434655",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#dce9ff",
+                        "on-tertiary-fixed": "#2a1700",
+                        "on-tertiary-container": "#ffeedd",
+                        "background": "#f8f9ff",
+                        "on-secondary-fixed-variant": "#005236",
+                        "on-tertiary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "on-background": "#0b1c30",
+                        "on-primary-container": "#eeefff",
+                        "inverse-primary": "#b4c5ff",
+                        "surface": "#f8f9ff",
+                        "tertiary": "#784b00",
+                        "secondary": "#006c49",
+                        "secondary-fixed-dim": "#4edea3",
+                        "primary-container": "#2563eb",
+                        "surface-container": "#e5eeff",
+                        "secondary-container": "#6cf8bb",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "secondary-fixed": "#6ffbbe",
+                        "primary-fixed": "#dbe1ff",
+                        "outline": "#737686",
+                        "on-primary-fixed": "#00174b",
+                        "inverse-surface": "#213145",
+                        "tertiary-fixed": "#ffddb8",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "surface-dim": "#cbdbf5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-margin": "24px",
+                        "base": "4px",
+                        "md": "16px",
+                        "xl": "32px",
+                        "lg": "24px",
+                        "gutter": "16px",
+                        "xs": "4px",
+                        "sm": "8px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "display-lg-mobile": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "display-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "500"}],
+                        "display-lg-mobile": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "display-lg": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .sidebar-item-active {
+            @apply bg-primary-container text-on-primary-container font-bold rounded-lg;
+        }
+        .modal-overlay {
+            background-color: rgba(11, 28, 48, 0.4);
+            backdrop-filter: blur(4px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen">
+<!-- Sidebar Navigation Shell -->
+<aside class="w-[240px] h-screen fixed left-0 top-0 bg-surface-container-lowest border-r border-outline-variant flex flex-col p-md gap-sm z-50">
+<div class="flex items-center gap-sm mb-lg px-xs">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">rocket_launch</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-sm text-headline-sm font-bold text-primary">SalesAI CRM</span>
+<span class="text-[10px] uppercase tracking-wider text-on-surface-variant font-bold">High Performance Mode</span>
+</div>
+</div>
+<nav class="flex-1 flex flex-col gap-xs">
+<a class="flex items-center gap-md p-sm text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md p-sm text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-body-md">Leads</span>
+</a>
+<a class="flex items-center gap-md p-sm text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">tactic</span>
+<span class="font-body-md">Pipeline</span>
+</a>
+<a class="flex items-center gap-md p-sm text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="font-body-md">Calendar</span>
+</a>
+<a class="flex items-center gap-md p-sm text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">campaign</span>
+<span class="font-body-md">Campaigns</span>
+</a>
+<a class="flex items-center gap-md p-sm text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-body-md">Analytics</span>
+</a>
+<a class="flex items-center gap-md p-sm bg-primary-container text-on-primary-container font-bold rounded-lg transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md">Settings</span>
+</a>
+</nav>
+<div class="mt-auto pt-md border-t border-outline-variant">
+<div class="flex items-center gap-sm p-sm rounded-lg hover:bg-surface-container-high cursor-pointer transition-colors duration-200">
+<img class="w-10 h-10 rounded-full bg-surface-dim object-cover" data-alt="Professional studio headshot of a senior system administrator in a clean office setting. The lighting is soft and natural, with a palette of blues and greys reflecting a corporate yet modern atmosphere. The focus is sharp on the face, displaying a reliable and professional demeanor." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2Do_EiwUDIpIvHDPMFCqwGhjnv2e1ogM7GnkuUHZU6JZPB_52Rxtw2mTNb2UC-Jyd1VsNcswOm5_vW6Bry7J8e9J_GJPVkEJKW3-R3tZYsCuSswzulLedsntQ9rdLGZS9yb2Q4WN1chhv5Moa1NcPaBusASuevNnw44DGvi9xdvgXbFDh0yMBIxhhdwYHMHDVcZaBZWjkack_3YQpvqDWkDECvbLRlP0Z6EyeqTzWeeb4h8lssFRcWed_xsBy5rWQwmom3HxwjQ"/>
+<div class="flex flex-col">
+<span class="font-label-md text-on-surface">Alex Rivera</span>
+<span class="text-xs text-on-surface-variant">System Admin</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-[240px] min-h-screen flex flex-col">
+<!-- Top Navigation Bar -->
+<header class="flex justify-between items-center h-16 px-lg sticky top-0 z-40 bg-surface border-b border-outline-variant transition-all duration-150">
+<div class="flex items-center gap-md w-1/2">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-lg pl-10 pr-4 py-2 focus:ring-2 focus:ring-primary focus:border-primary transition-all" placeholder="Search system users..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="p-sm text-on-surface-variant hover:text-primary transition-all rounded-full hover:bg-surface-container-high">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-sm text-on-surface-variant hover:text-primary transition-all rounded-full hover:bg-surface-container-high">
+<span class="material-symbols-outlined">help</span>
+</button>
+<button class="p-sm text-on-surface-variant hover:text-primary transition-all rounded-full hover:bg-surface-container-high">
+<span class="material-symbols-outlined">apps</span>
+</button>
+</div>
+</header>
+<!-- Page Header & Action -->
+<section class="p-lg">
+<div class="flex justify-between items-end mb-lg">
+<div>
+<h1 class="font-headline-md text-headline-md text-on-surface">User Management</h1>
+<p class="text-on-surface-variant font-body-md mt-1">Manage system access and roles for your high-performance sales team.</p>
+</div>
+<button class="flex items-center gap-sm bg-primary text-white px-lg py-sm rounded-lg font-label-md hover:bg-surface-tint transition-all shadow-sm" onclick="openModal()">
+<span class="material-symbols-outlined" style="font-variation-settings: 'wght' 600;">person_add</span>
+                    Create User
+                </button>
+</div>
+<!-- Dashboard Stats Summary (Bento-style top row) -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter mb-lg">
+<div class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl flex items-center gap-md">
+<div class="w-12 h-12 bg-primary-container/20 rounded-lg flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">group</span>
+</div>
+<div>
+<span class="block text-xs text-on-surface-variant uppercase font-bold tracking-wider">Total Users</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">1,284</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl flex items-center gap-md">
+<div class="w-12 h-12 bg-secondary-container/20 rounded-lg flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">verified_user</span>
+</div>
+<div>
+<span class="block text-xs text-on-surface-variant uppercase font-bold tracking-wider">Active Admins</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">12</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl flex items-center gap-md">
+<div class="w-12 h-12 bg-tertiary-container/10 rounded-lg flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">pending_actions</span>
+</div>
+<div>
+<span class="block text-xs text-on-surface-variant uppercase font-bold tracking-wider">Pending Invites</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">24</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest border border-outline-variant p-md rounded-xl flex items-center gap-md">
+<div class="w-12 h-12 bg-error-container/20 rounded-lg flex items-center justify-center text-error">
+<span class="material-symbols-outlined">security</span>
+</div>
+<div>
+<span class="block text-xs text-on-surface-variant uppercase font-bold tracking-wider">Access Requests</span>
+<span class="font-headline-sm text-headline-sm text-on-surface">03</span>
+</div>
+</div>
+</div>
+<!-- Users Table Container -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden">
+<div class="p-md border-b border-outline-variant flex justify-between items-center bg-surface-bright">
+<div class="flex gap-sm">
+<button class="px-sm py-1 border border-outline text-xs rounded-full hover:bg-surface-container-high transition-colors">All Roles</button>
+<button class="px-sm py-1 border border-outline-variant text-xs text-on-surface-variant rounded-full hover:bg-surface-container-high transition-colors">Admin</button>
+<button class="px-sm py-1 border border-outline-variant text-xs text-on-surface-variant rounded-full hover:bg-surface-container-high transition-colors">Manager</button>
+</div>
+<div class="flex gap-sm">
+<button class="p-1 hover:bg-surface-container-high rounded transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+<button class="p-1 hover:bg-surface-container-high rounded transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="p-md font-label-md text-on-surface-variant uppercase tracking-wider">User</th>
+<th class="p-md font-label-md text-on-surface-variant uppercase tracking-wider">Email Address</th>
+<th class="p-md font-label-md text-on-surface-variant uppercase tracking-wider">Role</th>
+<th class="p-md font-label-md text-on-surface-variant uppercase tracking-wider">Status</th>
+<th class="p-md font-label-md text-on-surface-variant uppercase tracking-wider">Last Login</th>
+<th class="p-md font-label-md text-on-surface-variant uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-surface-bright transition-colors">
+<td class="p-md flex items-center gap-md">
+<div class="w-9 h-9 rounded-full bg-blue-100 flex items-center justify-center text-primary font-bold">JD</div>
+<span class="font-label-md text-on-surface">Jordan Davis</span>
+</td>
+<td class="p-md text-on-surface-variant">jordan.davis@salesai.com</td>
+<td class="p-md">
+<span class="px-sm py-1 bg-primary/10 text-primary text-[11px] font-bold rounded-full uppercase tracking-tighter">Admin</span>
+</td>
+<td class="p-md">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+<span class="text-body-sm">Active</span>
+</div>
+</td>
+<td class="p-md text-on-surface-variant text-body-sm">2 mins ago</td>
+<td class="p-md text-right">
+<button class="p-1 hover:bg-surface-container-high rounded-full transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-bright transition-colors">
+<td class="p-md flex items-center gap-md">
+<div class="w-9 h-9 rounded-full bg-green-100 flex items-center justify-center text-secondary font-bold">SM</div>
+<span class="font-label-md text-on-surface">Sarah Miller</span>
+</td>
+<td class="p-md text-on-surface-variant">sarah.miller@salesai.com</td>
+<td class="p-md">
+<span class="px-sm py-1 bg-secondary/10 text-secondary text-[11px] font-bold rounded-full uppercase tracking-tighter">Manager</span>
+</td>
+<td class="p-md">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+<span class="text-body-sm">Active</span>
+</div>
+</td>
+<td class="p-md text-on-surface-variant text-body-sm">1 hour ago</td>
+<td class="p-md text-right">
+<button class="p-1 hover:bg-surface-container-high rounded-full transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-bright transition-colors">
+<td class="p-md flex items-center gap-md">
+<div class="w-9 h-9 rounded-full bg-amber-100 flex items-center justify-center text-tertiary font-bold">RK</div>
+<span class="font-label-md text-on-surface">Robert King</span>
+</td>
+<td class="p-md text-on-surface-variant">r.king@salesai.com</td>
+<td class="p-md">
+<span class="px-sm py-1 bg-tertiary/10 text-tertiary text-[11px] font-bold rounded-full uppercase tracking-tighter">Executive</span>
+</td>
+<td class="p-md">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-outline"></div>
+<span class="text-body-sm text-on-surface-variant">Away</span>
+</div>
+</td>
+<td class="p-md text-on-surface-variant text-body-sm">Yesterday</td>
+<td class="p-md text-right">
+<button class="p-1 hover:bg-surface-container-high rounded-full transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-bright transition-colors">
+<td class="p-md flex items-center gap-md">
+<div class="w-9 h-9 rounded-full bg-blue-100 flex items-center justify-center text-primary font-bold">EB</div>
+<span class="font-label-md text-on-surface">Elena Belova</span>
+</td>
+<td class="p-md text-on-surface-variant">e.belova@salesai.com</td>
+<td class="p-md">
+<span class="px-sm py-1 bg-primary/10 text-primary text-[11px] font-bold rounded-full uppercase tracking-tighter">Admin</span>
+</td>
+<td class="p-md">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+<span class="text-body-sm">Active</span>
+</div>
+</td>
+<td class="p-md text-on-surface-variant text-body-sm">3 days ago</td>
+<td class="p-md text-right">
+<button class="p-1 hover:bg-surface-container-high rounded-full transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-md flex justify-between items-center bg-surface-container-low border-t border-outline-variant">
+<span class="text-body-sm text-on-surface-variant">Showing 1-4 of 1,284 users</span>
+<div class="flex gap-xs">
+<button class="px-sm py-1 border border-outline-variant rounded hover:bg-surface-container-high text-on-surface-variant text-xs">Previous</button>
+<button class="px-sm py-1 bg-primary text-white rounded text-xs">1</button>
+<button class="px-sm py-1 border border-outline-variant rounded hover:bg-surface-container-high text-on-surface-variant text-xs">2</button>
+<button class="px-sm py-1 border border-outline-variant rounded hover:bg-surface-container-high text-on-surface-variant text-xs">3</button>
+<button class="px-sm py-1 border border-outline-variant rounded hover:bg-surface-container-high text-on-surface-variant text-xs">Next</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Create User Modal -->
+<div class="fixed inset-0 z-[60] flex items-center justify-center hidden" id="createUserModal">
+<div class="modal-overlay absolute inset-0" onclick="closeModal()"></div>
+<div class="bg-surface-container-lowest w-full max-w-md rounded-xl shadow-2xl relative z-10 overflow-hidden transform transition-all scale-95 opacity-0 duration-200" id="modalContent">
+<div class="p-lg border-b border-outline-variant flex justify-between items-center">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Create New User</h2>
+<button class="text-on-surface-variant hover:text-on-surface" onclick="closeModal()">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<form class="p-lg space-y-md">
+<div class="space-y-xs">
+<label class="font-label-md text-on-surface">Full Name</label>
+<input class="w-full px-md py-2 bg-white border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all" placeholder="e.g. John Doe" type="text"/>
+</div>
+<div class="space-y-xs">
+<label class="font-label-md text-on-surface">Email Address</label>
+<input class="w-full px-md py-2 bg-white border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all" placeholder="john@salesai.com" type="email"/>
+</div>
+<div class="space-y-xs">
+<label class="font-label-md text-on-surface">System Role</label>
+<select class="w-full px-md py-2 bg-white border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all">
+<option value="executive">Executive (Read-only Analytics)</option>
+<option selected="" value="manager">Manager (Team Lead Access)</option>
+<option value="admin">Admin (Full System Access)</option>
+</select>
+</div>
+<div class="pt-md flex gap-md">
+<button class="flex-1 py-2 border border-outline text-on-surface font-label-md rounded-lg hover:bg-surface-container-high transition-colors" onclick="closeModal()" type="button">Cancel</button>
+<button class="flex-1 py-2 bg-primary text-white font-label-md rounded-lg hover:bg-surface-tint transition-all" type="submit">Create User</button>
+</div>
+</form>
+</div>
+</div>
+<script>
+        function openModal() {
+            const modal = document.getElementById('createUserModal');
+            const content = document.getElementById('modalContent');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                content.classList.remove('scale-95', 'opacity-0');
+                content.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('createUserModal');
+            const content = document.getElementById('modalContent');
+            content.classList.remove('scale-100', 'opacity-100');
+            content.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 200);
+        }
+
+        // Close on ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+    </script>
+</body></html>

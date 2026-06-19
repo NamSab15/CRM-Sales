@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Login | SalesAI CRM</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary": "#004ac6",
+                    "on-error": "#ffffff",
+                    "surface-tint": "#0053db",
+                    "on-secondary-container": "#00714d",
+                    "tertiary-container": "#996100",
+                    "surface-container-highest": "#d3e4fe",
+                    "outline-variant": "#c3c6d7",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "surface-bright": "#f8f9ff",
+                    "surface-variant": "#d3e4fe",
+                    "surface-container-low": "#eff4ff",
+                    "inverse-on-surface": "#eaf1ff",
+                    "on-error-container": "#93000a",
+                    "on-surface": "#0b1c30",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "error-container": "#ffdad6",
+                    "on-secondary-fixed": "#002113",
+                    "on-secondary": "#ffffff",
+                    "on-surface-variant": "#434655",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-high": "#dce9ff",
+                    "on-tertiary-fixed": "#2a1700",
+                    "on-tertiary-container": "#ffeedd",
+                    "background": "#f8f9ff",
+                    "on-secondary-fixed-variant": "#005236",
+                    "on-tertiary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "on-background": "#0b1c30",
+                    "on-primary-container": "#eeefff",
+                    "inverse-primary": "#b4c5ff",
+                    "surface": "#f8f9ff",
+                    "tertiary": "#784b00",
+                    "secondary": "#006c49",
+                    "secondary-fixed-dim": "#4edea3",
+                    "primary-container": "#2563eb",
+                    "surface-container": "#e5eeff",
+                    "secondary-container": "#6cf8bb",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "secondary-fixed": "#6ffbbe",
+                    "primary-fixed": "#dbe1ff",
+                    "outline": "#737686",
+                    "on-primary-fixed": "#00174b",
+                    "inverse-surface": "#213145",
+                    "tertiary-fixed": "#ffddb8",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "surface-dim": "#cbdbf5"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-margin": "24px",
+                    "base": "4px",
+                    "md": "16px",
+                    "xl": "32px",
+                    "lg": "24px",
+                    "gutter": "16px",
+                    "xs": "4px",
+                    "sm": "8px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "display-lg-mobile": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "display-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "500"}],
+                    "display-lg-mobile": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "display-lg": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-surface-container-lowest text-on-surface overflow-hidden">
+<main class="flex min-h-screen w-full">
+<!-- Left Side: Login Form Section -->
+<section class="flex flex-col w-full lg:w-1/2 p-lg lg:p-xl bg-surface-container-lowest">
+<!-- Header/Logo Area -->
+<div class="flex items-center gap-sm mb-xl">
+<div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary text-headline-sm" data-icon="rocket_launch">rocket_launch</span>
+</div>
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary">SalesAI CRM</h1>
+</div>
+<!-- Form Container -->
+<div class="max-w-md w-full mx-auto my-auto flex flex-col justify-center">
+<div class="mb-lg">
+<h2 class="font-display-lg text-display-lg mb-xs">Welcome back</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Enter your credentials to access your sales dashboard.</p>
+</div>
+<!-- Social Login Buttons -->
+<div class="grid grid-cols-2 gap-md mb-lg">
+<button class="flex items-center justify-center gap-sm p-sm border border-outline-variant rounded-lg font-label-md text-label-md hover:bg-surface-container-low transition-colors duration-200">
+<span class="material-symbols-outlined text-primary" data-icon="cloud">cloud</span>
+                        Google
+                    </button>
+<button class="flex items-center justify-center gap-sm p-sm border border-outline-variant rounded-lg font-label-md text-label-md hover:bg-surface-container-low transition-colors duration-200">
+<span class="material-symbols-outlined text-primary" data-icon="laptop_mac">laptop_mac</span>
+                        Microsoft
+                    </button>
+</div>
+<div class="relative flex items-center gap-md mb-lg">
+<div class="flex-grow border-t border-outline-variant"></div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Or continue with</span>
+<div class="flex-grow border-t border-outline-variant"></div>
+</div>
+<!-- Email/Password Form -->
+<form class="space-y-md" onsubmit="event.preventDefault();">
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface" for="email">Work Email</label>
+<input class="w-full p-md border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-200 font-body-md text-body-md bg-white" id="email" placeholder="name@company.com" type="email"/>
+</div>
+<div class="space-y-xs">
+<div class="flex justify-between items-center">
+<label class="font-label-md text-label-md text-on-surface" for="password">Password</label>
+<a class="font-label-md text-label-md text-primary hover:underline" href="#">Forgot password?</a>
+</div>
+<div class="relative">
+<input class="w-full p-md border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-200 font-body-md text-body-md bg-white" id="password" placeholder="••••••••" type="password"/>
+<button class="absolute right-md top-1/2 -translate-y-1/2 text-on-surface-variant" type="button">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</button>
+</div>
+</div>
+<div class="flex items-center gap-sm py-xs">
+<input class="w-4 h-4 text-primary border-outline-variant rounded focus:ring-primary" id="remember" type="checkbox"/>
+<label class="font-body-sm text-body-sm text-on-surface-variant" for="remember">Keep me logged in for 30 days</label>
+</div>
+<button class="w-full bg-primary text-on-primary py-md px-lg rounded-lg font-label-md text-label-md font-bold shadow-lg shadow-primary/20 hover:bg-surface-tint transition-all duration-300">
+                        Sign In to Workspace
+                    </button>
+</form>
+<p class="mt-xl text-center font-body-sm text-body-sm text-on-surface-variant">
+                    Don't have an account? <a class="text-primary font-bold hover:underline" href="#">Start your 14-day free trial</a>
+</p>
+</div>
+<!-- Footer area -->
+<footer class="mt-auto pt-lg">
+<div class="flex gap-md font-label-sm text-label-sm text-on-surface-variant">
+<a class="hover:text-primary" href="#">Privacy Policy</a>
+<a class="hover:text-primary" href="#">Terms of Service</a>
+<span class="ml-auto">© 2024 SalesAI CRM</span>
+</div>
+</footer>
+</section>
+<!-- Right Side: Feature Panel (Deep Navy) -->
+<section class="hidden lg:flex flex-col w-1/2 relative bg-inverse-surface overflow-hidden">
+<!-- Atmospheric Gradient Overlays -->
+<div class="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent pointer-events-none"></div>
+<!-- Floating Data Illustration Elements -->
+<div class="relative z-10 h-full flex flex-col justify-center p-xl">
+<!-- Illustration Wrapper -->
+<div class="w-full max-w-lg mx-auto relative mb-xl">
+<!-- Dashboard Preview Mockup (Bento Style) -->
+<div class="grid grid-cols-2 gap-md relative">
+<!-- Card 1: Revenue Chart -->
+<div class="col-span-2 glass-effect rounded-xl p-lg shadow-xl translate-y-8 animate-[bounce_5s_infinite]">
+<div class="flex justify-between items-center mb-md">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-surface-container-highest uppercase opacity-60">Forecasted Revenue</span>
+<span class="font-headline-sm text-headline-sm text-white">$1.2M <span class="text-secondary text-label-md">+14%</span></span>
+</div>
+<span class="material-symbols-outlined text-white/40" data-icon="trending_up">trending_up</span>
+</div>
+<div class="h-24 w-full flex items-end gap-xs">
+<div class="bg-primary/40 w-full h-[30%] rounded-t-sm"></div>
+<div class="bg-primary/50 w-full h-[45%] rounded-t-sm"></div>
+<div class="bg-primary/60 w-full h-[65%] rounded-t-sm"></div>
+<div class="bg-primary/80 w-full h-[55%] rounded-t-sm"></div>
+<div class="bg-primary w-full h-[90%] rounded-t-sm"></div>
+</div>
+</div>
+<!-- Card 2: AI Insights -->
+<div class="glass-effect rounded-xl p-md shadow-xl -translate-x-4 animate-[pulse_6s_infinite]">
+<div class="flex items-center gap-xs mb-sm">
+<span class="material-symbols-outlined text-secondary-container text-body-lg" data-icon="auto_awesome">auto_awesome</span>
+<span class="font-label-md text-label-md text-white">AI Suggestion</span>
+</div>
+<p class="font-body-sm text-body-sm text-white/80">Follow up with <span class="font-bold">Global Tech Corp</span>. High intent detected in email thread.</p>
+</div>
+<!-- Card 3: Task Activity -->
+<div class="glass-effect rounded-xl p-md shadow-xl translate-x-4">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 rounded-full bg-secondary-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary-container" data-icon="call">call</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-white">Next Call</p>
+<p class="font-body-sm text-body-sm text-white/60">In 15 minutes</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Background Image (Detailed Prompt Execution) -->
+<div class="absolute -inset-10 -z-10 blur-3xl opacity-20">
+<div class="w-full h-full bg-cover" data-alt="A sophisticated abstract visualization of global sales data networks. Floating translucent data nodes and glowing blue connections drift across a deep navy blue and charcoal background. High-end professional aesthetic with cinematic lighting and soft ethereal particles, evoking a sense of powerful artificial intelligence and high-velocity business intelligence." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDSelCeWayV8k0LSGe8OCu0fGIZcA6G8w4g5_q_ia9QtkVbDj4Hd9-EM5XND2StuVFvbekI21JTaE9meyHJ-UuUz2hGDdHhU4lroKx38XnmKWPvjzQgKg3bluEm4KzeVaLfsftnYqGsW3MvqjB_UHsA-HJXl_eMLSF8za9Y6zXsAapSQOj3_PpK9tkuIw_AqQO6on6Lk7TcRruohD77n0sHbuVGTioKlJpuQefRvF-iMUZvZ1yA-VVVBLdsqgcFMaCHBLR4NEoHWQ')"></div>
+</div>
+</div>
+<!-- Text Content -->
+<div class="max-w-lg mx-auto text-center lg:text-left">
+<h3 class="font-display-lg text-display-lg text-white mb-md leading-tight">Supercharge your pipeline with precision AI.</h3>
+<p class="font-body-lg text-body-lg text-white/70 mb-xl">
+                        Our proprietary algorithms analyze every interaction, scoring leads in real-time so your team focuses on the deals most likely to close.
+                    </p>
+<!-- Social Proof / Trust Badges -->
+<div class="flex items-center gap-lg opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+<img class="h-6" data-alt="Corporate logo of a Fortune 500 technology company in white monochrome, minimalist and professional for a corporate login screen." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTupT63SfrBAZ6u09Spdv8T51L4fqYJvYH3AChqbQASMnZip6vhHam-U9VFDV2i4lUOAlh3Uu8qX00Wqdvahrk4XP_Z2WAkBRXvlUazC98mdwDcQ3QM3P59UBB3tKiZy4okXsp-gG0UF-8TbsKBO9gDAlintOslCD-pdrfoFy2FiS46cTUOhv1qDwfVNU-mHWyo-uuBr8IFKzlPcxCFypEWVmoSb2ym2xn15nmVhO64tsdejCbFkobxNgqFtZmX6oEfSFzA7EKrg"/>
+<img class="h-6" data-alt="Sleek modern startup logo for a leading fintech organization, rendered in a subtle white silhouette against a dark background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHE3oa7tFURV-nJd9hUtXXwUuXLDy2AE5s_qyZwW39kKCxYLibZsMWYyXAN9rz0Kb-9cyQb9AXRn3AnFkbSXR1AGFhZvsB8voNJKsZw64uthLDAmlDY-Z42-9KGvIZgSYfV37q1lxKD9xG8gl_NdQzy55HSn64Rqd8G04dhIVLIROPdsNNey67xnX4hCe8muvCBEqcf7S_K_Y8q1JYgacxrQ3jVtI6hCglnK9yEXlcPvCuH-E5c1froDMKQZwC9Q6N7_zxiz76Xg"/>
+<img class="h-6" data-alt="Professional logistics enterprise brand mark in a clean white vector style, illustrating industry-standard trust and scale." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQWCUIWIhDrX2ZCM79q2f0XR1Nec1V4-Hp34G7GDtXzWN7__5g19uoAxsWY5u6Ku8_zSfS8FiT4A0cvpI71hBHWSyU4Uj74e0AZvMAiAglTMbKP9OS9XCyyMH8AE38jqHlpPreZiKQy1NKDSmGzPa9wAuHIq-gPRbWA5WVROF65n2u7FDGVNSGcpQiN8NrNRghIcnC-cUrw3QUnqOB4n3EYewBQVwboCok_C-IWTZDJFa3Pxl3bl0q5boJHbbESDQ0S5n-jbG1lw"/>
+</div>
+</div>
+</div>
+<!-- Decorative Elements -->
+<div class="absolute top-0 right-0 p-lg">
+<div class="flex items-center gap-sm glass-effect px-md py-sm rounded-full">
+<div class="w-2 h-2 bg-secondary rounded-full animate-pulse"></div>
+<span class="font-label-sm text-label-sm text-white/80">98.2% Accuracy Rating</span>
+</div>
+</div>
+</section>
+</main>
+<script>
+        // Subtle Mouse Interaction for the Right Side Glow
+        const rightPanel = document.querySelector('.lg\\:flex');
+        if (rightPanel) {
+            rightPanel.addEventListener('mousemove', (e) => {
+                const rect = rightPanel.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                rightPanel.style.setProperty('--mouse-x', `${x}px`);
+                rightPanel.style.setProperty('--mouse-y', `${y}px`);
+            });
+        }
+
+        // Logic for input focus styling is handled by Tailwind's focus utilities
+    </script>
+</body></html>

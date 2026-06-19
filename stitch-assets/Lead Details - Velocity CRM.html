@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Lead Details - SalesAI CRM</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#004ac6",
+                        "on-error": "#ffffff",
+                        "surface-tint": "#0053db",
+                        "on-secondary-container": "#00714d",
+                        "tertiary-container": "#996100",
+                        "surface-container-highest": "#d3e4fe",
+                        "outline-variant": "#c3c6d7",
+                        "tertiary-fixed-dim": "#ffb95f",
+                        "surface-bright": "#f8f9ff",
+                        "surface-variant": "#d3e4fe",
+                        "surface-container-low": "#eff4ff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-error-container": "#93000a",
+                        "on-surface": "#0b1c30",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed": "#002113",
+                        "on-secondary": "#ffffff",
+                        "on-surface-variant": "#434655",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#dce9ff",
+                        "on-tertiary-fixed": "#2a1700",
+                        "on-tertiary-container": "#ffeedd",
+                        "background": "#f8f9ff",
+                        "on-secondary-fixed-variant": "#005236",
+                        "on-tertiary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "on-background": "#0b1c30",
+                        "on-primary-container": "#eeefff",
+                        "inverse-primary": "#b4c5ff",
+                        "surface": "#f8f9ff",
+                        "tertiary": "#784b00",
+                        "secondary": "#006c49",
+                        "secondary-fixed-dim": "#4edea3",
+                        "primary-container": "#2563eb",
+                        "surface-container": "#e5eeff",
+                        "secondary-container": "#6cf8bb",
+                        "on-tertiary-fixed-variant": "#653e00",
+                        "secondary-fixed": "#6ffbbe",
+                        "primary-fixed": "#dbe1ff",
+                        "outline": "#737686",
+                        "on-primary-fixed": "#00174b",
+                        "inverse-surface": "#213145",
+                        "tertiary-fixed": "#ffddb8",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "surface-dim": "#cbdbf5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-margin": "24px",
+                        "base": "4px",
+                        "md": "16px",
+                        "xl": "32px",
+                        "lg": "24px",
+                        "gutter": "16px",
+                        "xs": "4px",
+                        "sm": "8px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "display-lg-mobile": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "display-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "500"}],
+                        "display-lg-mobile": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "display-lg": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #F8FAFC; color: #0b1c30; font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        .glass-card { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); border: 1px solid #E2E8F0; }
+        .ai-gradient-text { background: linear-gradient(135deg, #004ac6, #4edea3); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    </style>
+</head>
+<body class="overflow-hidden">
+<!-- Left Navigation Rail (SideNavBar) -->
+<aside class="w-[240px] h-screen fixed left-0 top-0 bg-surface-container-lowest dark:bg-inverse-surface border-r border-outline-variant dark:border-outline flex flex-col p-md gap-sm z-50">
+<div class="mb-lg">
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary dark:text-primary-fixed-dim">SalesAI CRM</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mt-1 opacity-70">High Performance Mode</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 ease-in-out rounded-lg font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">dashboard</span> Dashboard
+            </a>
+<a class="flex items-center gap-md px-md py-sm bg-primary-container text-on-primary-container font-bold rounded-lg transition-colors duration-200 ease-in-out font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">group</span> Leads
+            </a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 ease-in-out rounded-lg font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">tactic</span> Pipeline
+            </a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 ease-in-out rounded-lg font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">calendar_today</span> Calendar
+            </a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 ease-in-out rounded-lg font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">campaign</span> Campaigns
+            </a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 ease-in-out rounded-lg font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">analytics</span> Analytics
+            </a>
+</nav>
+<div class="mt-auto pt-md border-t border-outline-variant">
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-high transition-colors duration-200 ease-in-out rounded-lg font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">settings</span> Settings
+            </a>
+<div class="flex items-center gap-sm mt-md px-sm">
+<img class="w-8 h-8 rounded-full object-cover" data-alt="Professional headshot of a senior sales executive, clean corporate studio lighting, neutral background, sharp focus, wearing a charcoal suit." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJO_qJ7bCuwpmARL1RGq88HsuaTkB-XnnYNJEDPCcE3B3J0osYppN95ALEJwii2UKsZ2_ETWEpeAD547Nxc50u-YuKh2fojXZRkZwbCRI28WMmul_KkdDke3RAfWP6ChSy4vnQB8eXmIjLwaxDNIgIdeVhStpRWymEwq73_8D5yorjPcQ-Hj1oibpsLJ2qxMXZkjPihk6xIIuLdeRZDUZI8cGXwCNq2LSaaPJw4iCUnbXjYzZYoNDABvQSaOQ0NdHDyolLfRXdGg"/>
+<div class="flex-1 overflow-hidden">
+<p class="font-label-md text-label-md truncate">Alex Sterling</p>
+<p class="text-[10px] text-on-surface-variant truncate">Lead Account Exec</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-[240px] h-screen flex flex-col relative bg-surface">
+<!-- Top Navigation Bar -->
+<header class="flex justify-between items-center h-16 px-lg sticky top-0 z-40 bg-surface dark:bg-background border-b border-outline-variant dark:border-outline">
+<div class="flex items-center gap-md">
+<button class="p-sm rounded-full hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined text-on-surface-variant">arrow_back</span>
+</button>
+<h2 class="font-headline-sm text-headline-sm font-bold text-on-surface">Lead Detail</h2>
+</div>
+<div class="flex items-center gap-lg">
+<div class="relative w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[18px]">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container border border-outline-variant rounded-lg text-body-sm focus:ring-2 focus:ring-primary focus:border-primary transition-all" placeholder="Search leads..." type="text"/>
+</div>
+<div class="flex items-center gap-md">
+<button class="relative p-sm rounded-full hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="p-sm rounded-full hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined text-on-surface-variant">apps</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Lead Context Header -->
+<div class="px-lg py-lg bg-surface flex flex-wrap items-center justify-between gap-lg border-b border-outline-variant">
+<div class="flex items-center gap-lg">
+<div class="w-16 h-16 rounded-xl bg-primary flex items-center justify-center text-on-primary font-bold text-display-lg-mobile relative overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center opacity-90" data-alt="A professional business portrait of a middle-aged female executive with a confident expression, soft natural office lighting, blurred modern office background with green plants and glass walls." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA8TnYlgNjAr6rK36Cig7-mwtM5K5M3AIbax6FHMtK-2Xa2lv_BcVLcfOkO2NeSeWZ4_a8T3iRDhhGi_1S8KYtoy9SlsI568dbiqVuRg9ZGPI5dofIApDraqzivOgRC5-ALsIlhx-OJ73eN1jdyuaim-N6TXzZpNBH5JvqNn-rV4Cpzk764OJStVUct2n4ZZfXrOd1yMESFV_BWMRrwlaa5fhgqaOR3uxlWNv1ze4j4OqPjntiX1ehtg7FUwm5Y18uEoDjmdO8qyw')"></div>
+<span class="relative z-10">JP</span>
+</div>
+<div>
+<div class="flex items-center gap-sm">
+<h3 class="font-headline-md text-headline-md text-on-surface">Jordan Pierce</h3>
+<span class="bg-secondary-container text-on-secondary-container text-[10px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">Enterprise Lead</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Chief Technology Officer at <span class="font-semibold text-primary">Quantum Dynamics Ltd</span></p>
+<div class="flex items-center gap-md mt-sm">
+<span class="flex items-center gap-xs font-body-sm text-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">location_on</span> San Francisco, CA
+                        </span>
+<span class="flex items-center gap-xs font-body-sm text-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">mail</span> j.pierce@qdynamics.ai
+                        </span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="text-right">
+<p class="font-label-sm text-label-sm text-on-surface-variant">Deal Value</p>
+<p class="font-headline-sm text-headline-sm font-bold text-primary">$285,000</p>
+</div>
+<div class="h-10 w-[1px] bg-outline-variant"></div>
+<button class="bg-primary text-on-primary px-lg py-2 rounded-lg font-label-md flex items-center gap-sm hover:brightness-110 transition-all shadow-sm">
+<span class="material-symbols-outlined">call</span> Call Lead
+                </button>
+</div>
+</div>
+<!-- Tabs Navigation -->
+<div class="px-lg bg-surface border-b border-outline-variant flex gap-xl h-12 items-center">
+<button class="font-label-md text-on-surface-variant hover:text-primary transition-all relative h-full flex items-center">
+                Overview
+            </button>
+<button class="font-label-md text-on-surface-variant hover:text-primary transition-all relative h-full flex items-center">
+                Timeline
+            </button>
+<button class="font-label-md text-on-surface-variant hover:text-primary transition-all relative h-full flex items-center">
+                Follow-ups
+                <span class="ml-1.5 bg-error text-on-error text-[10px] w-4 h-4 rounded-full flex items-center justify-center">2</span>
+</button>
+<button class="font-label-md text-primary relative h-full flex items-center">
+                AI Assistant
+                <div class="absolute bottom-0 left-0 w-full h-[2px] bg-primary"></div>
+</button>
+</div>
+<!-- Content Area: AI Assistant Active -->
+<div class="flex-1 overflow-hidden p-lg grid grid-cols-12 gap-gutter bg-[#F8FAFC]">
+<!-- Left Side: Insights & Risk (Col 1-7) -->
+<div class="col-span-7 flex flex-col gap-gutter overflow-y-auto pr-2 custom-scrollbar">
+<!-- Analyze Action Header -->
+<div class="flex items-center justify-between">
+<div>
+<h4 class="font-headline-sm text-headline-sm text-on-surface">AI Sales Insight</h4>
+<p class="text-body-sm text-on-surface-variant">Generated 2 minutes ago based on latest interaction</p>
+</div>
+<button class="bg-surface-container-lowest border border-primary text-primary px-md py-2 rounded-lg font-label-md flex items-center gap-sm hover:bg-primary hover:text-on-primary transition-all group">
+<span class="material-symbols-outlined text-[18px] group-hover:rotate-180 transition-transform duration-500">sync</span> Analyze Now
+                    </button>
+</div>
+<!-- AI Insight Card -->
+<div class="glass-card rounded-xl p-lg flex flex-col gap-md relative overflow-hidden shadow-sm">
+<div class="absolute -top-12 -right-12 w-32 h-32 bg-primary/5 rounded-full blur-2xl"></div>
+<div class="flex items-start gap-md">
+<div class="p-3 bg-primary-container rounded-lg">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</div>
+<div class="flex-1">
+<h5 class="font-label-md text-label-md text-on-surface uppercase tracking-wide">Key Recommendation</h5>
+<p class="font-body-lg text-body-lg text-on-surface mt-1 leading-relaxed">
+                                Lead shows high intent but is concerned about <span class="font-bold border-b-2 border-secondary-container">scalability during Q4</span>. Recommend sending the "Infrastructure Resilience" whitepaper and proposing a pilot phase starting next month.
+                            </p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-md mt-sm">
+<div class="bg-surface-container-low p-md rounded-lg border border-outline-variant/30">
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-1 uppercase">Sentiment</p>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">sentiment_very_satisfied</span>
+<span class="font-label-md text-label-md text-on-surface">Highly Positive (0.87)</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-md rounded-lg border border-outline-variant/30">
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-1 uppercase">Buying Stage</p>
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-tertiary" style="font-variation-settings: 'FILL' 1;">shopping_cart</span>
+<span class="font-label-md text-label-md text-on-surface">Evaluation / Finalizing</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-sm">
+<h6 class="font-label-md text-label-md text-on-surface">AI Summary of Last Call</h6>
+<ul class="space-y-sm">
+<li class="flex items-start gap-sm font-body-sm text-body-sm text-on-surface-variant">
+<span class="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0"></span>
+                                Jordan mentioned they are looking to replace their legacy CRM by year-end.
+                            </li>
+<li class="flex items-start gap-sm font-body-sm text-body-sm text-on-surface-variant">
+<span class="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0"></span>
+                                Budget is approved; main concern is the 3-week data migration window.
+                            </li>
+</ul>
+</div>
+</div>
+<!-- Risk Level Bar -->
+<div class="bg-white rounded-xl p-lg border border-outline-variant shadow-sm">
+<div class="flex justify-between items-center mb-md">
+<h5 class="font-label-md text-label-md text-on-surface uppercase tracking-wide">Churn Risk Assessment</h5>
+<span class="font-bold text-secondary text-body-md">Low Risk (12%)</span>
+</div>
+<div class="h-3 w-full bg-surface-container rounded-full overflow-hidden flex">
+<div class="h-full bg-secondary transition-all duration-1000" style="width: 12%;"></div>
+<div class="h-full bg-transparent w-full"></div>
+</div>
+<div class="flex justify-between mt-sm text-[10px] font-bold text-on-surface-variant uppercase">
+<span>Safe</span>
+<span>Moderate</span>
+<span>High Risk</span>
+</div>
+<div class="mt-lg p-md bg-secondary-container/10 border border-secondary/20 rounded-lg">
+<p class="font-body-sm text-body-sm text-on-secondary-fixed-variant italic">
+                            "The consistent engagement in technical webinars and high email open rate (92%) indicates a low likelihood of churn."
+                        </p>
+</div>
+</div>
+<!-- Asymmetric Widget: Competitive Analysis -->
+<div class="grid grid-cols-2 gap-gutter">
+<div class="bg-white rounded-xl p-md border border-outline-variant shadow-sm">
+<h6 class="font-label-sm text-label-sm text-on-surface-variant uppercase mb-sm">Mentioned Competitors</h6>
+<div class="flex flex-wrap gap-sm">
+<span class="px-2 py-1 bg-surface-container rounded font-body-sm text-body-sm">HubSpot</span>
+<span class="px-2 py-1 bg-surface-container rounded font-body-sm text-body-sm">Salesforce</span>
+</div>
+</div>
+<div class="bg-white rounded-xl p-md border border-outline-variant shadow-sm">
+<h6 class="font-label-sm text-label-sm text-on-surface-variant uppercase mb-sm">Urgency Score</h6>
+<div class="flex items-center gap-md">
+<span class="text-display-lg-mobile font-bold text-primary">9/10</span>
+<span class="text-body-sm text-on-surface-variant leading-tight">Closing window: <br/>Next 14 days</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Side: AI Chat Interface (Col 8-12) -->
+<div class="col-span-5 flex flex-col h-full bg-white rounded-xl border border-outline-variant shadow-lg overflow-hidden relative">
+<!-- Chat Header -->
+<div class="p-md border-b border-outline-variant bg-surface flex items-center justify-between">
+<div class="flex items-center gap-sm">
+<div class="w-2 h-2 rounded-full bg-secondary animate-pulse"></div>
+<span class="font-label-md text-label-md text-on-surface">AI Contextual Assistant</span>
+</div>
+<button class="p-xs text-on-surface-variant hover:text-primary transition-all">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</div>
+<!-- Chat Body -->
+<div class="flex-1 overflow-y-auto p-md space-y-lg custom-scrollbar">
+<!-- System Message -->
+<div class="text-center">
+<span class="text-[10px] text-on-surface-variant font-bold uppercase tracking-widest bg-surface-container px-2 py-1 rounded">Conversation started 09:41 AM</span>
+</div>
+<!-- Bot Message -->
+<div class="flex items-start gap-sm">
+<div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+</div>
+<div class="bg-surface-container-low p-md rounded-tr-xl rounded-b-xl max-w-[85%] border border-outline-variant/30">
+<p class="font-body-sm text-body-sm text-on-surface">Hi Alex! I've analyzed Jordan's profile and recent emails. What specific data would you like to query regarding this lead?</p>
+</div>
+</div>
+<!-- User Message -->
+<div class="flex items-start gap-sm justify-end">
+<div class="bg-primary text-on-primary p-md rounded-tl-xl rounded-b-xl max-w-[85%] shadow-sm">
+<p class="font-body-sm text-body-sm">What was their main objection in the last discovery call?</p>
+</div>
+<div class="w-8 h-8 rounded-lg overflow-hidden shrink-0">
+<img class="w-full h-full object-cover" data-alt="Close-up profile photo of a smiling professional man, studio lighting, soft gray background, modern professional portrait style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXNaPqnEYM8F6VSEu1u2xUU5zVkbqPS8erX39B4bIAqT4p68Dy4RnuvxZe8R-FNYOtbPFXMLe2L262TPHijxnpEEoEy48y7RpmEplTydvexMHef9DyistHEyvPwGODCYr09qXQiiVQxxGC0OFsMMTY21dVihmdj1ZqzcY1_6Iegve6Vn5oWdz2bF1Cdysdu-H0OtkaFE8XXW8O50xkK7NMoC9oUtfPy3b2IXlMq31EFrN3R7H2-svIyuqaGyJOZsVaa3X-SsAATA"/>
+</div>
+</div>
+<!-- Bot Message -->
+<div class="flex items-start gap-sm">
+<div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+</div>
+<div class="bg-surface-container-low p-md rounded-tr-xl rounded-b-xl max-w-[85%] border border-outline-variant/30">
+<p class="font-body-sm text-body-sm text-on-surface">The primary objection was <span class="font-bold">implementation downtime</span>. Jordan is worried that shifting from their current system will disrupt their engineering sprints. They specifically asked for a technical breakdown of the "Zero-Downtime Migration" API.</p>
+<div class="mt-md flex flex-col gap-sm">
+<p class="text-[11px] font-bold text-primary uppercase">Suggested Action:</p>
+<button class="flex items-center gap-sm bg-white p-sm rounded border border-outline-variant hover:border-primary transition-all text-left group">
+<span class="material-symbols-outlined text-[16px] text-primary">attachment</span>
+<span class="font-body-sm text-body-sm flex-1">Attach Migration SDK Whitepaper</span>
+<span class="material-symbols-outlined text-[16px] opacity-0 group-hover:opacity-100 transition-opacity">send</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Animation Placeholder for "Thinking" state (hidden by default) -->
+<div class="hidden flex items-start gap-sm" id="ai-thinking">
+<div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+</div>
+<div class="flex items-center gap-1 px-md py-4">
+<div class="w-1.5 h-1.5 bg-primary rounded-full animate-bounce" style="animation-delay: 0.1s"></div>
+<div class="w-1.5 h-1.5 bg-primary rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+<div class="w-1.5 h-1.5 bg-primary rounded-full animate-bounce" style="animation-delay: 0.3s"></div>
+</div>
+</div>
+</div>
+<!-- Chat Input -->
+<div class="p-md border-t border-outline-variant bg-surface-container-lowest">
+<div class="relative">
+<textarea class="w-full pl-4 pr-12 py-3 bg-white border border-outline-variant rounded-xl text-body-sm focus:ring-2 focus:ring-primary focus:border-primary transition-all resize-none custom-scrollbar" placeholder="Ask AI about this lead..." rows="1"></textarea>
+<button class="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-primary text-on-primary rounded-lg hover:brightness-110 transition-all">
+<span class="material-symbols-outlined text-[18px]">send</span>
+</button>
+</div>
+<div class="mt-sm flex gap-sm overflow-x-auto pb-1 no-scrollbar">
+<button class="shrink-0 px-3 py-1 bg-surface-container rounded-full text-[10px] font-bold text-on-surface-variant hover:bg-surface-container-high transition-all">Who are the decision makers?</button>
+<button class="shrink-0 px-3 py-1 bg-surface-container rounded-full text-[10px] font-bold text-on-surface-variant hover:bg-surface-container-high transition-all">Summarize emails</button>
+<button class="shrink-0 px-3 py-1 bg-surface-container rounded-full text-[10px] font-bold text-on-surface-variant hover:bg-surface-container-high transition-all">Next best step?</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Micro-interactions Script -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const chatInput = document.querySelector('textarea');
+            const chatBody = document.querySelector('.flex-1.overflow-y-auto');
+
+            // Simple auto-resize for textarea
+            chatInput.addEventListener('input', function() {
+                this.style.height = 'auto';
+                this.style.height = (this.scrollHeight) + 'px';
+            });
+
+            // Focus interaction
+            chatInput.addEventListener('focus', () => {
+                chatInput.parentElement.classList.add('shadow-md');
+            });
+            chatInput.addEventListener('blur', () => {
+                chatInput.parentElement.classList.remove('shadow-md');
+            });
+
+            // Smooth scroll to bottom of chat
+            chatBody.scrollTop = chatBody.scrollHeight;
+        });
+    </script>
+</body></html>

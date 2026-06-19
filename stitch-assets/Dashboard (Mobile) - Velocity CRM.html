@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SalesAI - Mobile Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary": "#004ac6",
+                    "on-error": "#ffffff",
+                    "surface-tint": "#0053db",
+                    "on-secondary-container": "#00714d",
+                    "tertiary-container": "#996100",
+                    "surface-container-highest": "#d3e4fe",
+                    "outline-variant": "#c3c6d7",
+                    "tertiary-fixed-dim": "#ffb95f",
+                    "surface-bright": "#f8f9ff",
+                    "surface-variant": "#d3e4fe",
+                    "surface-container-low": "#eff4ff",
+                    "inverse-on-surface": "#eaf1ff",
+                    "on-error-container": "#93000a",
+                    "on-surface": "#0b1c30",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed-variant": "#003ea8",
+                    "error-container": "#ffdad6",
+                    "on-secondary-fixed": "#002113",
+                    "on-secondary": "#ffffff",
+                    "on-surface-variant": "#434655",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-high": "#dce9ff",
+                    "on-tertiary-fixed": "#2a1700",
+                    "on-tertiary-container": "#ffeedd",
+                    "background": "#f8f9ff",
+                    "on-secondary-fixed-variant": "#005236",
+                    "on-tertiary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "on-background": "#0b1c30",
+                    "on-primary-container": "#eeefff",
+                    "inverse-primary": "#b4c5ff",
+                    "surface": "#f8f9ff",
+                    "tertiary": "#784b00",
+                    "secondary": "#006c49",
+                    "secondary-fixed-dim": "#4edea3",
+                    "primary-container": "#2563eb",
+                    "surface-container": "#e5eeff",
+                    "secondary-container": "#6cf8bb",
+                    "on-tertiary-fixed-variant": "#653e00",
+                    "secondary-fixed": "#6ffbbe",
+                    "primary-fixed": "#dbe1ff",
+                    "outline": "#737686",
+                    "on-primary-fixed": "#00174b",
+                    "inverse-surface": "#213145",
+                    "tertiary-fixed": "#ffddb8",
+                    "primary-fixed-dim": "#b4c5ff",
+                    "surface-dim": "#cbdbf5"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-margin": "24px",
+                    "base": "4px",
+                    "md": "16px",
+                    "xl": "32px",
+                    "lg": "24px",
+                    "gutter": "16px",
+                    "xs": "4px",
+                    "sm": "8px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "display-lg-mobile": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-sm": ["Inter"],
+                    "display-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "500"}],
+                    "display-lg-mobile": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-sm": ["12px", {"lineHeight": "16px", "fontWeight": "400"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "display-lg": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-24">
+<!-- Top AppBar - Following Shared Components Logic -->
+<header class="fixed top-0 left-0 right-0 h-16 bg-surface-container-lowest flex justify-between items-center px-lg z-50 border-b border-outline-variant md:hidden">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary-container" style="font-size: 18px;">business_center</span>
+</div>
+<h1 class="font-headline-sm text-headline-sm font-bold text-on-surface">SalesAI</h1>
+</div>
+<div class="flex items-center gap-4">
+<button class="relative text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-container-high overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a corporate executive for a CRM profile, clean lighting, soft background, modern business aesthetic with primary blue accents, high resolution, minimalist style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAas-OetdZrPjRhcKWK1MXJPe7i8nkZoVcD9o80PZlTOQo_3xwkhBr9OYsgH-nKMWCA9dqrmQ99oVmICJK7XRBC_oerT0sfIoRRxk5VmaOS86q5s5qpzpVOtpagXaznERJCi4GejaZsU0OQnjq12irp3FtA4faHsZHowcDmMRn0sJWVhZJM3fwu50sa2yudmvqZe7WpZ8-5Jum1hS7QXam7QG1KBUQal9EO0-Ay4SRVNqOPHSi6u0gDucsKbq9wUIQnbVBfYohrKQ"/>
+</div>
+</div>
+</header>
+<!-- Main Content Container -->
+<main class="pt-20 px-md space-y-md">
+<!-- Welcome Section -->
+<section class="py-sm">
+<h2 class="font-display-lg-mobile text-display-lg-mobile text-on-surface">Daily Overview</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">You have 12 follow-ups today.</p>
+</section>
+<!-- KPI Cards - Vertically Stacked -->
+<div class="grid grid-cols-1 gap-md">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest p-md rounded-xl border border-outline-variant shadow-sm flex items-center justify-between">
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Total Revenue</p>
+<p class="font-headline-md text-headline-md text-on-surface mt-1">$42,850.00</p>
+<div class="flex items-center gap-1 mt-2 text-on-secondary-container">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span class="font-label-sm text-label-sm">+12% vs last month</span>
+</div>
+</div>
+<div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-fixed-variant">monetization_on</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest p-md rounded-xl border border-outline-variant shadow-sm flex items-center justify-between">
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Active Leads</p>
+<p class="font-headline-md text-headline-md text-on-surface mt-1">142</p>
+<div class="flex items-center gap-1 mt-2 text-on-secondary-container">
+<span class="material-symbols-outlined text-sm">person_add</span>
+<span class="font-label-sm text-label-sm">8 new this week</span>
+</div>
+</div>
+<div class="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">person_search</span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest p-md rounded-xl border border-outline-variant shadow-sm flex items-center justify-between">
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Win Rate</p>
+<p class="font-headline-md text-headline-md text-on-surface mt-1">24.5%</p>
+<div class="flex items-center gap-1 mt-2 text-on-error-container">
+<span class="material-symbols-outlined text-sm">trending_down</span>
+<span class="font-label-sm text-label-sm">-2% from goal</span>
+</div>
+</div>
+<div class="w-12 h-12 rounded-full bg-tertiary-fixed flex items-center justify-center">
+<span class="material-symbols-outlined text-on-tertiary-fixed-variant">star</span>
+</div>
+</div>
+</div>
+<!-- Leads by Source - Simplified Bar Chart Section -->
+<section class="bg-surface-container-lowest p-md rounded-xl border border-outline-variant">
+<div class="flex justify-between items-center mb-md">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Leads by Source</h3>
+<button class="text-primary font-label-md text-label-md hover:underline">Full Report</button>
+</div>
+<div class="space-y-sm">
+<!-- Social Bar -->
+<div class="space-y-1">
+<div class="flex justify-between text-body-sm font-body-sm text-on-surface-variant">
+<span>Social Media</span>
+<span>45%</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full transition-all duration-1000" style="width: 45%;"></div>
+</div>
+</div>
+<!-- Direct Bar -->
+<div class="space-y-1">
+<div class="flex justify-between text-body-sm font-body-sm text-on-surface-variant">
+<span>Direct Search</span>
+<span>30%</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full transition-all duration-1000" style="width: 30%;"></div>
+</div>
+</div>
+<!-- Referral Bar -->
+<div class="space-y-1">
+<div class="flex justify-between text-body-sm font-body-sm text-on-surface-variant">
+<span>Referrals</span>
+<span>15%</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-tertiary h-full rounded-full transition-all duration-1000" style="width: 15%;"></div>
+</div>
+</div>
+<!-- Other Bar -->
+<div class="space-y-1">
+<div class="flex justify-between text-body-sm font-body-sm text-on-surface-variant">
+<span>Other</span>
+<span>10%</span>
+</div>
+<div class="w-full bg-surface-container-high h-2 rounded-full overflow-hidden">
+<div class="bg-outline h-full rounded-full transition-all duration-1000" style="width: 10%;"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Activity Feed -->
+<section class="bg-surface-container-lowest p-md rounded-xl border border-outline-variant">
+<div class="flex justify-between items-center mb-md">
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Activity Feed</h3>
+<a class="text-primary font-label-md text-label-md hover:underline" href="#">See All</a>
+</div>
+<div class="relative pl-6 space-y-md border-l border-outline-variant ml-2">
+<!-- Activity Item 1 -->
+<div class="relative">
+<span class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-primary flex items-center justify-center ring-4 ring-surface-container-lowest">
+<span class="material-symbols-outlined text-[10px] text-on-primary">call</span>
+</span>
+<div class="space-y-1">
+<p class="font-body-md text-body-md text-on-surface"><strong>Sarah Jenkins</strong> scheduled a discovery call</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">2 hours ago</p>
+</div>
+</div>
+<!-- Activity Item 2 -->
+<div class="relative">
+<span class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-secondary flex items-center justify-center ring-4 ring-surface-container-lowest">
+<span class="material-symbols-outlined text-[10px] text-on-secondary">mail</span>
+</span>
+<div class="space-y-1">
+<p class="font-body-md text-body-md text-on-surface">Email campaign <strong>"Spring Enterprise"</strong> sent to 45 leads</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">4 hours ago</p>
+</div>
+</div>
+<!-- Activity Item 3 -->
+<div class="relative">
+<span class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-tertiary flex items-center justify-center ring-4 ring-surface-container-lowest">
+<span class="material-symbols-outlined text-[10px] text-on-tertiary">check_circle</span>
+</span>
+<div class="space-y-1">
+<p class="font-body-md text-body-md text-on-surface">Deal <strong>"Acme Corp Expansion"</strong> moved to Closed-Won</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Yesterday</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Floating Action Button - Contextual -->
+<button class="fixed right-md bottom-24 w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center active:scale-90 transition-transform z-40">
+<span class="material-symbols-outlined">add</span>
+</button>
+<!-- Bottom Navigation Bar - Following Shared Components Rules -->
+<nav class="fixed bottom-0 left-0 right-0 h-16 bg-surface-container-lowest flex items-center justify-around px-md z-50 border-t border-outline-variant">
+<!-- Active Tab: Dashboard -->
+<a class="flex flex-col items-center gap-1 group" href="#">
+<div class="px-5 py-1 bg-primary-container text-on-primary-container rounded-full transition-all">
+<span class="material-symbols-outlined text-primary font-bold">dashboard</span>
+</div>
+<span class="font-label-sm text-label-sm text-primary font-bold">Dashboard</span>
+</a>
+<!-- Inactive Tab: Leads -->
+<a class="flex flex-col items-center gap-1 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<div class="px-5 py-1 rounded-full group-hover:bg-surface-container-high">
+<span class="material-symbols-outlined">person_search</span>
+</div>
+<span class="font-label-sm text-label-sm">Leads</span>
+</a>
+<!-- Inactive Tab: Pipeline -->
+<a class="flex flex-col items-center gap-1 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<div class="px-5 py-1 rounded-full group-hover:bg-surface-container-high">
+<span class="material-symbols-outlined">monetization_on</span>
+</div>
+<span class="font-label-sm text-label-sm">Pipeline</span>
+</a>
+<!-- Inactive Tab: More/Settings -->
+<a class="flex flex-col items-center gap-1 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<div class="px-5 py-1 rounded-full group-hover:bg-surface-container-high">
+<span class="material-symbols-outlined">settings</span>
+</div>
+<span class="font-label-sm text-label-sm">Settings</span>
+</a>
+</nav>
+<script>
+        // Micro-interactions and effects
+        document.addEventListener('DOMContentLoaded', () => {
+            // Animate progress bars on load
+            const bars = document.querySelectorAll('.bg-primary, .bg-secondary, .bg-tertiary, .bg-outline');
+            bars.forEach(bar => {
+                const targetWidth = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.width = targetWidth;
+                }, 300);
+            });
+
+            // Ripple effect for navigation (simple version)
+            const navItems = document.querySelectorAll('nav a');
+            navItems.forEach(item => {
+                item.addEventListener('click', (e) => {
+                    // Logic to handle tab switching visual if needed
+                    // For static prototype, we just handle the visual feedback
+                });
+            });
+        });
+    </script>
+</body></html>

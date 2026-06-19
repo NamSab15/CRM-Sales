@@ -1,0 +1,19 @@
+{
+  "name": "crm-monorepo",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": [
+    "apps/*",
+    "services/*",
+    "packages/*",
+    "ai-workers/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint"
+  },
+  "devDependencies": {
+    "turbo": "^1.13.0"
+  }
+}
